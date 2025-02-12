@@ -1,13 +1,67 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
+    static Random random = new Random();
     public static void main(String[] args) {
         Personaje[] superheroes = crearArraySuperheroes();
         Personaje[] villanos = crearArrayVillanos();
-        imprimirArray(superheroes);
-        imprimirArray(villanos);
+        imprimirMenu();
+        int option = 0;
+        while ((option = opcionMenu()) != 10){
+            switch (option) {
+                case 1 :
+                    imprimirArray(superheroes);
+                    imprimirArray(villanos);
+                    break;
+                case 2 :
+                    imprimirArray(superheroes);
+                    System.out.println("Que superheroe escogeras?");
+                    int numSuperheroe = scanner.nextInt();
+                    if (comprobarOpcion(numSuperheroe)){
+                        System.out.println("Tu superheroe sera " + escogerPersonaje(superheroes, numSuperheroe).getNombre());
+                    }
+                    break;
+                case 3 :
+                    imprimirArray(villanos);
+                    System.out.println("Que villano escogeras?");
+                    int numVillano = scanner.nextInt();
+                    if (comprobarOpcion(numVillano)){
+                        System.out.println("Tu villano sera " + escogerPersonaje(villanos, numVillano).getNombre());
+                    }
+                    break;
+                case 4 :
+                    System.out.println("Tu personaje sera: " + superheroes[random.nextInt(0,4)].getNombre());
+                    break;
+
+                case 5 :
+                    System.out.println("Tu personaje sera: " + villanos[random.nextInt(0,4)].getNombre());
+                    break;
+
+                case 6 :
+                    System.out.println("Has salido del juego!");
+                    break;
+            }
+        }
+
+    }
+    private static void imprimirMenu(){
+        System.out.println("Bienvenidos al juego de Super Mario Bros!");
+        System.out.println("1) Mostrar personajes");
+        System.out.println("2) Escoge tu superheroe");
+        System.out.println("3) Escoge tu villano");
+        System.out.println("4) Escoge tu superheroe de manera aleatoria");
+        System.out.println("5) Escoge tu villano de manera aleatoria");
+        System.out.println("6) Salir");
+    }
+
+    private static int opcionMenu(){
+        System.out.println("Escoge una opcion: ");
+        int opcion = scanner.nextInt();
+        return opcion;
     }
 
     private static Personaje[] crearArraySuperheroes(){
@@ -37,26 +91,20 @@ public class Main {
         return villanos;
     }
 
-    private static void imprimirMenu(){
-        System.out.println("Bienvenidos al juego de Super Mario Bros!");
-        System.out.println("1) Mostrar personajes");
-        System.out.println("2) Escoge tu superheroe");
-        System.out.println("3) Escoge tu villano");
-        System.out.println("4) Escoge tu villano de manera aleatoria");
-    }
-
-    private static int opcionMenu(){
-        System.out.println("Escoge una opcion: ");
-        Scanner scanner = new Scanner(System.in);
-        int opcion = scanner.nextInt();
-        return opcion;
-    }
-
     private static void imprimirArray(Personaje[] personajes) {
         for (Personaje p : personajes) {
             System.out.println(p);
         }
     }
 
+    private static Personaje escogerPersonaje(Personaje[] personajes, int opcion){
+        return personajes[opcion - 1];
+    }
 
+    private static boolean comprobarOpcion(int opcion){
+        if (opcion < 5 && opcion > 0){
+            return true;
+        }
+        return false;
+    }
 }
