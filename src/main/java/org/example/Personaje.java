@@ -1,6 +1,6 @@
 package org.example;
 
-public class Personaje {
+public abstract class Personaje {
     private String nombre;
     private int salud;
     private int ataque;
@@ -39,11 +39,9 @@ public class Personaje {
 
     @Override
     public String toString() {
-        return "Personaje{" +
-                "nombre='" + nombre + '\'' +
-                ", salud=" + salud +
-                ", ataque=" + ataque +
-                ", defensa=" + defensa +
-                '}';
+        return "Personaje: " + nombre +
+                ", salud: " + salud +
+                ", ataque: " + ataque +
+                ", defensa: " + defensa;
     }
 }

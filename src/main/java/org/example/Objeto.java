@@ -37,11 +37,9 @@ public class Objeto {
 
     @Override
     public String toString() {
-        return "Objetos{" +
-                "nombre='" + nombre + '\'' +
-                ", poder='" + poder + '\'' +
-                ", daño=" + daño +
-                '}';
+        return "Objetos: " + nombre +
+                ", poder: " + poder +
+                ", daño: " + daño;
     }
 }
 
