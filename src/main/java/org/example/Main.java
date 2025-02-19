@@ -19,47 +19,44 @@ public class Main {
         imprimirMenu();
         while ((option = opcionMenu()) != 4){
             switch (option) {
-                case 1 :
-                    System.out.println("Superheroes: ");
+                case 1 -> {
+                    System.out.println("Superheroes:");
                     combate.imprimirArray(superheroes);
-                    System.out.println("Villanos: ");
+                    System.out.println("Villanos:");
                     combate.imprimirArray(villanos);
-                    break;
-                case 2 :
+                }
+                case 2 -> {
                     System.out.println("Que superheroe escogeras?");
-                    combate.imprimirArray(superheroes);;
+                    combate.imprimirArray(superheroes);
                     int numSuperheroe = scanner.nextInt();
-                    if (combate.comprobarOpcionPersonajes(superheroes, numSuperheroe)){
+                    if (combate.comprobarOpcionPersonajes(superheroes, numSuperheroe)) {
                         Superheroe superheroeEscogido = combate.escogerSuperheroe(superheroes, numSuperheroe);
                         System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
                         System.out.println("Que villano escogeras?");
                         combate.imprimirArray(villanos);
                         int numVillano = scanner.nextInt();
                         Villano villanoEscogido = combate.escogerVillanos(villanos, numVillano);
-                        if (combate.comprobarOpcionPersonajes(villanos, numVillano)){
+                        if (combate.comprobarOpcionPersonajes(villanos, numVillano)) {
                             System.out.println("Tu villano sera " + villanoEscogido.getNombre());
                             System.out.println("Que objeto escogeras para tu superheroe?");
                             combate.imprimirArrayObjetos(objetos);
                             int numObjeto = scanner.nextInt();
-                            if (combate.comprobarOpcionObjetos(objetos, numObjeto)){
+                            if (combate.comprobarOpcionObjetos(objetos, numObjeto)) {
                                 Objeto objetoEscogido = combate.escogerObjeto(objetos, numObjeto);
                                 combate.luchaPersonajes(superheroeEscogido, villanoEscogido, objetoEscogido);
                             }
                         }
 
                     }
-                    break;
-                case 3 :
-                    Personaje superheroeEscogido = superheroes[random.nextInt(0,4)];
-                    System.out.println("Tu personaje sera: " + superheroes[random.nextInt(0,4)].getNombre());
-                    Personaje villanoEscogido = villanos[random.nextInt(0,4)];
-                    System.out.println("Tu personaje sera: " + villanos[random.nextInt(0,4)].getNombre());
-
-                    break;
-                case 4 :
-                    System.out.println("Has salido del juego!");
-                    break;
-                default: System.out.println("Opcion invalida.");
+                }
+                case 3 -> {
+                    Personaje superheroeEscogido = superheroes[random.nextInt(0, 4)];
+                    System.out.println("Tu personaje sera: " + superheroeEscogido.getNombre());
+                    Personaje villanoEscogido = villanos[random.nextInt(0, 4)];
+                    System.out.println("Tu personaje sera: " + villanoEscogido);
+                }
+                case 4 -> System.out.println("Has salido del juego!");
+                default -> System.out.println("Opcion invalida.");
             }
         }
 
