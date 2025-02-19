@@ -37,6 +37,14 @@ public abstract class Personaje {
         this.defensa = defensa;
     }
 
+    public int getSalud() {
+        return salud;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
+
     @Override
     public String toString() {
         return "Personaje: " + nombre +

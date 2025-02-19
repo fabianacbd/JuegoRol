@@ -17,7 +17,7 @@ public class Main {
 
         //Código
         imprimirMenu();
-        while ((option = opcionMenu()) != 4){
+        while ((option = opcionMenu()) != 4) {
             switch (option) {
                 case 1 -> {
                     System.out.println("Superheroes:");

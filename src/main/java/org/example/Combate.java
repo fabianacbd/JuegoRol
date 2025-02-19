@@ -98,8 +98,32 @@ public class Combate {
         System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
         System.out.println("El objeto escogido para tu superheroe sera: " + objeto.getNombre() + ". Poder: " + objeto.getPoder() + ". Daño: " + objeto.getDaño());
         System.out.println("Tu villano sera " + villanoEscogido.getNombre());
-        //función turno personaje1
-        //función turno personaje2
+        while (superheroeEscogido.getSalud() > 0 && villanoEscogido.getSalud() > 0) {
+            // Turno del superhéroe
+            System.out.println("Es turno de " + superheroeEscogido.getNombre());
+            int dañoInfringidoSuperheroe = (superheroeEscogido.getAtaque() + objeto.getDaño()) - villanoEscogido.getDefensa();
+            villanoEscogido.setSalud(Math.max(0, villanoEscogido.getSalud() - dañoInfringidoSuperheroe));
+            System.out.println(superheroeEscogido.getNombre() + " ha atacado a " + villanoEscogido.getNombre() + " y su salud ha bajado a: " + villanoEscogido.getSalud());
+
+            // Si el villano murió, terminamos el bucle
+            if (villanoEscogido.getSalud() <= 0) {
+                System.out.println(villanoEscogido.getNombre() + " ha sido derrotado.");
+                break;
+            }
+
+            // Turno del villano
+            System.out.println("Es turno de " + villanoEscogido.getNombre());
+            int dañoInfringidoVillano = villanoEscogido.getAtaque() - superheroeEscogido.getDefensa();
+            superheroeEscogido.setSalud(Math.max(0, superheroeEscogido.getSalud() - dañoInfringidoVillano));
+            System.out.println(villanoEscogido.getNombre() + " ha atacado a " + superheroeEscogido.getNombre() + " y su salud ha bajado a: " + superheroeEscogido.getSalud());
+
+            // Si el superhéroe murió, terminamos el bucle
+            if (superheroeEscogido.getSalud() <= 0) {
+                System.out.println(superheroeEscogido.getNombre() + " ha sido derrotado.");
+                break;
+            }
+        }
+
     }
 
     public Superheroe[] getSuperheroes() {
