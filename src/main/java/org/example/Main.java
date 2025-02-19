@@ -1,44 +1,49 @@
 package org.example;
 
+import java.io.ObjectStreamException;
 import java.util.Scanner;
 import java.util.Random;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Random random = new Random();
+    static Combate combate = new Combate();
     public static void main(String[] args) {
-        Superheroe[] superheroes = crearArraySuperheroes();
-        Villano[] villanos = crearArrayVillanos();
-        Objeto[] objetos = crearArrayObjeto();
-        imprimirMenu();
+        //Declaración de variables
         int option = 0;
-        while ((option = opcionMenu()) != 10){
+        Superheroe[] superheroes = combate.getSuperheroes();
+        Villano[] villanos = combate.getVillanos();
+        Objeto[] objetos = combate.getObjetos();
+
+        //Código
+        imprimirMenu();
+        while ((option = opcionMenu()) != 4){
             switch (option) {
                 case 1 :
-                    imprimirArray(superheroes);
-                    imprimirArray(villanos);
+                    System.out.println("Superheroes: ");
+                    combate.imprimirArray(superheroes);
+                    System.out.println("Villanos: ");
+                    combate.imprimirArray(villanos);
                     break;
                 case 2 :
                     System.out.println("Que superheroe escogeras?");
-                    imprimirArray(superheroes);
+                    combate.imprimirArray(superheroes);;
                     int numSuperheroe = scanner.nextInt();
-                    if (comprobarOpcion(numSuperheroe)){
-                        Superheroe superheroeEscogido = escogerSuperheroe(superheroes, numSuperheroe);
+                    if (combate.comprobarOpcionPersonajes(superheroes, numSuperheroe)){
+                        Superheroe superheroeEscogido = combate.escogerSuperheroe(superheroes, numSuperheroe);
                         System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
                         System.out.println("Que villano escogeras?");
-                        imprimirArray(villanos);
+                        combate.imprimirArray(villanos);
                         int numVillano = scanner.nextInt();
-                        Villano villanoEscogido = escogerVillanos(villanos, numVillano);
-                        if (comprobarOpcion(numVillano)){
+                        Villano villanoEscogido = combate.escogerVillanos(villanos, numVillano);
+                        if (combate.comprobarOpcionPersonajes(villanos, numVillano)){
                             System.out.println("Tu villano sera " + villanoEscogido.getNombre());
                             System.out.println("Que objeto escogeras para tu superheroe?");
-                            imprimirArrayObjeto(objetos);
+                            combate.imprimirArrayObjetos(objetos);
                             int numObjeto = scanner.nextInt();
-                            if (comprobarOpcion(numObjeto)){
-                                Objeto objetoSuperheroe = escogerObjeto(objetos, numObjeto);
-                                System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
-                                System.out.println("El objeto escogido para tu superheroe sera: " + objetoSuperheroe.getNombre() + ". Poder: " + objetoSuperheroe.getPoder() + ". Daño: " + objetoSuperheroe.getDaño());
-                                luchaPersonajes(superheroeEscogido, villanoEscogido, objetoSuperheroe);
+                            if (combate.comprobarOpcionObjetos(objetos, numObjeto)){
+                                Objeto objetoEscogido = combate.escogerObjeto(objetos, numObjeto);
+                                combate.luchaPersonajes(superheroeEscogido, villanoEscogido, objetoEscogido);
                             }
                         }
 
@@ -54,6 +59,7 @@ public class Main {
                 case 4 :
                     System.out.println("Has salido del juego!");
                     break;
+                default: System.out.println("Opcion invalida.");
             }
         }
 
@@ -72,82 +78,4 @@ public class Main {
         return opcion;
     }
 
-    private static Superheroe[] crearArraySuperheroes(){
-        //Creacion de los superheroes
-        Superheroe mario = new Superheroe("Mario", 10, 10);
-        Superheroe luigi = new Superheroe("Luigi", 10, 9);
-        //Creacion de objeto con el polimorfismo
-        Superheroe peach = new Superheroe("Princesa Peach", 8, 5);
-        Superheroe yoshi = new Superheroe("Yoshi", 8, 10);
-        Superheroe toad = new Superheroe("Toad", 7, 7);
-        //Creacion de array de superheroes
-        Superheroe[] superheroes = {mario, luigi, peach, yoshi, toad};
-        return superheroes;
-    }
-
-    private static Villano[] crearArrayVillanos() {
-        //Creacion de villanos
-        Villano browser = new Villano("Browser", 10, 9);
-        Villano wario = new Villano("Wario", 9, 9);
-        //Creacion de objeto con el polimorfismo
-        Villano waluigi = new Villano("Waluigi", 8, 8);
-        Villano donkeykong = new Villano("Donkey Kong", 10, 10);
-        Villano reyboo = new Villano("Rey Boo", 9, 8);
-
-        //Creacion de array de villanos
-        Villano[] villanos = {browser, waluigi, wario, donkeykong, reyboo};
-        return villanos;
-    }
-
-    private static Objeto[] crearArrayObjeto() {
-        //Creacion de objetos
-        Objeto champiñonRojo = new Objeto("Champiñon rojo", "Te hace mas grande", 10);
-        Objeto florDeFuego = new Objeto("Flor de fuego", "Poder de lanzar bolas de fuego", 10);
-        Objeto florDeHielo = new Objeto("Flor de hielo", "Poder de lanzar bolas de hielo", 10);
-        //Creacion de objetos con el polimorfismo
-        Objeto estrella = new Objeto("Estrella", "Te vuelve invensible por 20 segundos", 10);
-        Objeto champiñonVerde = new Objeto("Champiñon verde", "Te llena la salud", 10);
-
-        //Creacion de array de villanos
-        Objeto[] objetos = {champiñonRojo, champiñonVerde, florDeFuego, florDeHielo, estrella};
-        return objetos;
-    }
-
-    private static void imprimirArray(Personaje[] personajes) {
-        for (Personaje p : personajes) {
-            System.out.println(p);
-        }
-    }
-
-    private static void imprimirArrayObjeto(Objeto[] objetos) {
-        for (Objeto o : objetos) {
-            System.out.println(o);
-        }
-    }
-
-    private static Superheroe escogerSuperheroe(Superheroe[] superheroes, int opcion){
-        return superheroes[opcion - 1];
-    }
-
-    private static Villano escogerVillanos(Villano[] villanos, int opcion){
-        return villanos[opcion - 1];
-    }
-
-    private static Objeto escogerObjeto(Objeto[] objetos, int opcion){
-        return objetos[opcion - 1];
-    }
-
-    private static boolean comprobarOpcion(int opcion){
-        if (opcion < 5 && opcion > 0){
-            return true;
-        }
-        return false;
-    }
-
-    private static void luchaPersonajes(Superheroe superheroeEscogido, Villano villanoEscogido, Objeto objeto) {
-        System.out.println("La lucha ha comenzado!");
-        System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
-        System.out.println("El objeto escogido para tu superheroe sera: " + objeto.getNombre() + ". Poder: " + objeto.getPoder() + ". Daño: " + objeto.getDaño());
-        System.out.println("Tu villano sera " + villanoEscogido.getNombre());
-    }
 }
