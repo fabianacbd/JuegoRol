@@ -8,7 +8,7 @@ public abstract class Personaje {
 
     public Personaje(String nombre, int ataque, int defensa) {
         this.nombre = nombre;
-        this.salud = 100;
+        this.salud = 50;
         this.ataque = ataque;
         this.defensa = defensa;
     }

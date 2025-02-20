@@ -20,9 +20,9 @@ public class Main {
         while ((option = opcionMenu()) != 4) {
             switch (option) {
                 case 1 -> {
-                    System.out.println("Superheroes:");
+                    System.out.println("SUPERHEROES:");
                     combate.imprimirArray(superheroes);
-                    System.out.println("Villanos:");
+                    System.out.println("VILLANOS:");
                     combate.imprimirArray(villanos);
                 }
                 case 2 -> {
@@ -45,15 +45,22 @@ public class Main {
                                 Objeto objetoEscogido = combate.escogerObjeto(objetos, numObjeto);
                                 combate.luchaPersonajes(superheroeEscogido, villanoEscogido, objetoEscogido);
                             }
+                            imprimirMenu();
                         }
 
                     }
                 }
                 case 3 -> {
-                    Personaje superheroeEscogido = superheroes[random.nextInt(0, 4)];
-                    System.out.println("Tu personaje sera: " + superheroeEscogido.getNombre());
-                    Personaje villanoEscogido = villanos[random.nextInt(0, 4)];
-                    System.out.println("Tu personaje sera: " + villanoEscogido);
+                    Superheroe superheroeEscogido = superheroes[random.nextInt(0, 4)];
+                    System.out.println("Tu superheroe sera: ");
+                    System.out.println(superheroeEscogido);
+                    Villano villanoEscogido = villanos[random.nextInt(0, 4)];
+                    System.out.println("Tu villano sera: ");
+                    System.out.println(villanoEscogido);
+                    Objeto objetoEscogido = objetos[random.nextInt(0,4)];
+                    System.out.println("Tu objeto sera: ");
+                    System.out.println(objetoEscogido);
+                    combate.luchaPersonajes(superheroeEscogido, villanoEscogido, objetoEscogido);
                 }
                 case 4 -> System.out.println("Has salido del juego!");
                 default -> System.out.println("Opcion invalida.");
@@ -65,7 +72,7 @@ public class Main {
         System.out.println("Bienvenidos al juego de Super Mario Bros!");
         System.out.println("1) Mostrar personajes");
         System.out.println("2) Escoge tus personajes");
-        System.out.println("3) Escoge tus personajes de manera aleatoria");
+        System.out.println("3) Escoge tus personajes y objeto de manera aleatoria");
         System.out.println("4) Salir");
     }
 

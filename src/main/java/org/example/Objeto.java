@@ -38,8 +38,8 @@ public class Objeto {
     @Override
     public String toString() {
         return "Objetos: " + nombre +
-                ", poder: " + poder +
-                ", daño: " + daño;
+                " Poder: " + poder +
+                " Daño: " + daño;
     }
 }
 
