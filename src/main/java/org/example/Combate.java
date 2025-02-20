@@ -68,6 +68,8 @@ public class Combate {
         }
     }
 
+
+
     public Superheroe escogerSuperheroe(Superheroe[] superheroes, int opcion){
         return superheroes[opcion - 1];
     }
@@ -93,6 +95,7 @@ public class Combate {
         }
         return false;
     }
+
 
 
     public void luchaPersonajes(Superheroe superheroeEscogido, Villano villanoEscogido, Objeto objeto) {
