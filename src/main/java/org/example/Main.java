@@ -26,19 +26,19 @@ public class Main {
                     combate.imprimirArray(villanos);
                 }
                 case 2 -> {
-                    System.out.println("Que superheroe escogeras?");
+                    System.out.println("¿Que superheroe escogeras?");
                     combate.imprimirArray(superheroes);
                     int numSuperheroe = scanner.nextInt();
                     if (combate.comprobarOpcionPersonajes(superheroes, numSuperheroe)) {
                         Superheroe superheroeEscogido = combate.escogerSuperheroe(superheroes, numSuperheroe);
                         System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
-                        System.out.println("Que villano escogeras?");
+                        System.out.println("¿Que villano escogeras?");
                         combate.imprimirArray(villanos);
                         int numVillano = scanner.nextInt();
                         Villano villanoEscogido = combate.escogerVillanos(villanos, numVillano);
                         if (combate.comprobarOpcionPersonajes(villanos, numVillano)) {
                             System.out.println("Tu villano sera " + villanoEscogido.getNombre());
-                            System.out.println("Que objeto escogeras para tu superheroe?");
+                            System.out.println("¿Que objeto escogeras para tu superheroe?");
                             combate.imprimirArrayObjetos(objetos);
                             int numObjeto = scanner.nextInt();
                             if (combate.comprobarOpcionObjetos(objetos, numObjeto)) {
@@ -69,11 +69,13 @@ public class Main {
 
     }
     private static void imprimirMenu(){
-        System.out.println("Bienvenidos al juego de Super Mario Bros!");
-        System.out.println("1) Mostrar personajes");
-        System.out.println("2) Escoge tus personajes");
-        System.out.println("3) Escoge tus personajes y objeto de manera aleatoria");
-        System.out.println("4) Salir");
+        System.out.println("+---------------------------------------------+");
+        System.out.println("| Bienvenidos al juego de Super Mario Bros!   |");
+        System.out.println("| 1) Mostrar todos los personajes             |");
+        System.out.println("| 2) Escoge tus personajes manualmente        |");
+        System.out.println("| 3) Escoger personajes aleatoriamente        |");
+        System.out.println("| 4) Salir                                    |");
+        System.out.println("+---------------------------------------------+");
     }
 
     private static int opcionMenu(){
