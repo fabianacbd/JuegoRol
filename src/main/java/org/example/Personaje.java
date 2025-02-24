@@ -8,7 +8,7 @@ public abstract class Personaje {
 
     public Personaje(String nombre, int ataque, int defensa) {
         this.nombre = nombre;
-        this.salud = 50;
+        this.salud = 100;
         this.ataque = ataque;
         this.defensa = defensa;
     }
@@ -52,4 +52,15 @@ public abstract class Personaje {
                 ", ataque: " + ataque +
                 ", defensa: " + defensa;
     }
+
+    public abstract void atacar(Personaje personaje, int multiplicador);
+
+    public void recibirDaño(int daño){
+        this.salud = salud - (daño - this.defensa);
+        if (salud < 0){
+            this.salud = 0;
+        }
+    }
+
+
 }

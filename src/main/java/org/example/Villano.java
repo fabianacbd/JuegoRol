@@ -5,5 +5,9 @@ public class Villano extends Personaje {
         super(nombre, ataque, defensa);
     }
 
-
+    @Override
+    public void atacar(Personaje personaje, int multiplicador) {
+        int daño = getAtaque() * multiplicador;
+        personaje.recibirDaño(daño);
+    }
 }
