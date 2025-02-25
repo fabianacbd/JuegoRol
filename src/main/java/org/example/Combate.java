@@ -19,8 +19,8 @@ public class Combate {
 
     private Superheroe[] crearArraySuperheroes(){
         //Creacion de los superheroes
-        Superheroe mario = new Superheroe("Mario \uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDD27\uD83D\uDD34", 8, 7);
-        Superheroe luigi = new Superheroe("Luigi \uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDD27\uD83D\uDFE2", 7, 6);
+        Superheroe mario = new Superheroe("Mario \uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDD27", 8, 7);
+        Superheroe luigi = new Superheroe("Luigi \uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDD27", 7, 6);
         Superheroe peach = new Superheroe("Princesa Peach \uD83D\uDC78\uD83C\uDFFC", 4, 3);
         Superheroe yoshi = new Superheroe("Yoshi \uD83E\uDD96", 6, 5);
         Superheroe toad = new Superheroe("Toad \uD83C\uDF44\u200D\uD83D\uDFEB", 5, 4);
@@ -169,7 +169,6 @@ public class Combate {
                 case "Estrella ⭐" -> {
                     villano.setSalud(0);
                     System.out.println(superheroe.getNombre() + " tiene el poder de la estrella ⭐ y ha derrotado de un golpe a " + villano.getNombre());
-                    System.out.println(villano.getNombre() + " HA SIDO DERROTADO.");
                 }
             }
         } else if (turnoAtaqueSuperheroe == 2) {
