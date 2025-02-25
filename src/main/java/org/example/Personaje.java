@@ -47,10 +47,10 @@ public abstract class Personaje {
 
     @Override
     public String toString() {
-        return "Personaje: " + nombre +
-                ", salud: " + salud +
-                ", ataque: " + ataque +
-                ", defensa: " + defensa;
+        return  nombre +
+                ", salud ❤\uFE0F " + salud +
+                ", ataque \uD83D\uDCA5 " + ataque +
+                ", defensa \uD83D\uDEE1\uFE0F " + defensa;
     }
 
     public abstract void atacar(Personaje personaje, int multiplicador);
