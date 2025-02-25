@@ -21,7 +21,6 @@ public class Combate {
         //Creacion de los superheroes
         Superheroe mario = new Superheroe("Mario \uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDD27\uD83D\uDD34", 8, 7);
         Superheroe luigi = new Superheroe("Luigi \uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDD27\uD83D\uDFE2", 7, 6);
-        //Creación de objeto con el polimorfismo
         Superheroe peach = new Superheroe("Princesa Peach \uD83D\uDC78\uD83C\uDFFC", 4, 3);
         Superheroe yoshi = new Superheroe("Yoshi \uD83E\uDD96", 6, 5);
         Superheroe toad = new Superheroe("Toad \uD83C\uDF44\u200D\uD83D\uDFEB", 5, 4);
@@ -34,7 +33,6 @@ public class Combate {
         //Creacion de villanos
         Villano browser = new Villano("Browser \uD83D\uDC32", 10, 9);
         Villano wario = new Villano("Wario \uD83D\uDC77\uD83C\uDFFB", 7, 7);
-        //Creacion de objeto con el polimorfismo
         Villano waluigi = new Villano("Waluigi \uD83E\uDDB9\uD83C\uDFFB\u200D♂\uFE0F", 7, 6);
         Villano donkeykong = new Villano("Donkey Kong \uD83E\uDD8D", 8, 8);
         Villano reyboo = new Villano("Rey Boo \uD83D\uDC7B", 7, 5);
@@ -49,7 +47,6 @@ public class Combate {
         Objeto champiñonRojo = new Objeto("Champiñon Rojo \uD83C\uDF44", "Te hace mas grande. ", 6);
         Objeto florDeFuego = new Objeto("Flor de fuego \uD83D\uDD25", "Lanzar bolas de fuego. ", 8);
         Objeto florDeHielo = new Objeto("Flor de hielo ❄\uFE0F", "Lanzar bolas de hielo. ", 8);
-        //Creacion de objetos con el polimorfismo
         Objeto estrella = new Objeto("Estrella ⭐", "Te vuelve invencible. ", 10);
 
         //Creacion de array de villanos
@@ -112,7 +109,9 @@ public class Combate {
         System.out.println("Tu villano sera " + villanoEscogido.getNombre());
         while (superheroeEscogido.getSalud() > 0 && villanoEscogido.getSalud() > 0) {
             turnoSuperheroe(superheroeEscogido, villanoEscogido);
-            turnoVillano(villanoEscogido, superheroeEscogido);
+            if(villanoEscogido.getSalud() > 0) {
+                turnoVillano(villanoEscogido, superheroeEscogido);
+            }
         }
         if (superheroeEscogido.getSalud() <= 0) {
             System.out.println("-------------------------------");
@@ -150,7 +149,6 @@ public class Combate {
         System.out.println("-------------------------------");
         System.out.println("Presiona:");
         System.out.println("1) Atacar 2) Saltar y aplastar 3) Curarte con Champiñon Verde");
-        boolean puedeCurarse = true;
         int turnoAtaqueSuperheroe = scanner.nextInt();
 
         if (turnoAtaqueSuperheroe == 1) {
@@ -178,11 +176,10 @@ public class Combate {
             superheroe.atacar(villano, 2);
             System.out.println(superheroe.getNombre() + " ha dado un doble salto y ha aplastado a " + villano.getNombre());
             System.out.println("La salud de " + villano.getNombre() + " ahora es de " + villano.getSalud());
-        } else if (turnoAtaqueSuperheroe == 3 && puedeCurarse){
+        } else if (turnoAtaqueSuperheroe == 3){
             superheroe.setSalud(100);
             System.out.println(superheroe.getNombre() + " ha usado el champiñon verde y se ha curado");
             System.out.println("El nivel de la salud de " + superheroe.getNombre() + " es de " + superheroe.getSalud());
-            puedeCurarse = false;
         } else {
             System.out.println("Opcion no valida.");
         }
@@ -196,26 +193,20 @@ public class Combate {
         System.out.println("-------------------------------");
         System.out.println("Presiona:");
         System.out.println("1) Atacar 2) Superataque 3) Curarte con pocion magica \uD83D\uDD2E");
-        boolean puedeCurarse = true;
         int turnoAtaqueVillano = scanner.nextInt();
 
         if (turnoAtaqueVillano == 1) {
             villano.atacar(superheroe, 1);
             System.out.println(villano.getNombre() + " ha atacado a " + superheroe.getNombre());
             System.out.println("La salud de " + superheroe.getNombre() + " ahora es de " + superheroe.getSalud());
-
         } else if (turnoAtaqueVillano == 2) {
             villano.atacar(superheroe, 3);
             System.out.println(villano.getNombre() + " ha hecho superataque \uD83D\uDD25 a " + superheroe.getNombre());
             System.out.println("La salud de " + superheroe.getNombre() + " ahora es de " + superheroe.getSalud());
         } else if (turnoAtaqueVillano == 3) {
-            if (puedeCurarse) {
-                villano.setSalud(100);
-                System.out.println(villano.getNombre() + " ha usado la pocion curativa \uD83D\uDD2E y se ha curado");
-                System.out.println("El nivel de la salud de " + villano.getNombre() + " es de " + villano.getSalud());
-                // Marcar que el villano ya no puede curarse más
-                puedeCurarse = false;
-            }
+            villano.setSalud(100);
+            System.out.println(villano.getNombre() + " ha usado la pocion curativa \uD83D\uDD2E y se ha curado");
+            System.out.println("El nivel de la salud de " + villano.getNombre() + " es de " + villano.getSalud());
         } else {
             System.out.println("Opcion no valida.");
         }
