@@ -20,25 +20,35 @@ public class Main {
         while ((option = opcionMenu()) != 4) {
             switch (option) {
                 case 1 -> {
-                    System.out.println("SUPERHEROES:");
+                    System.out.println("-------------------------------");
+                    System.out.println("SUPERHEROES \uD83E\uDDB8\u200D♂\uFE0F");
+                    System.out.println("-------------------------------");
                     combate.imprimirArray(superheroes);
-                    System.out.println("VILLANOS:");
+                    System.out.println("-------------------------------");
+                    System.out.println("VILLANOS \uD83E\uDDB9");
+                    System.out.println("-------------------------------");
                     combate.imprimirArray(villanos);
                 }
                 case 2 -> {
+                    System.out.println("-------------------------------");
                     System.out.println("¿Que superheroe escogeras?");
+                    System.out.println("-------------------------------");
                     combate.imprimirArray(superheroes);
                     int numSuperheroe = scanner.nextInt();
                     if (combate.comprobarOpcionPersonajes(superheroes, numSuperheroe)) {
                         Superheroe superheroeEscogido = combate.escogerSuperheroe(superheroes, numSuperheroe);
                         System.out.println("Tu superheroe sera " + superheroeEscogido.getNombre());
+                        System.out.println("-------------------------------");
                         System.out.println("¿Que villano escogeras?");
+                        System.out.println("-------------------------------");
                         combate.imprimirArray(villanos);
                         int numVillano = scanner.nextInt();
                         Villano villanoEscogido = combate.escogerVillanos(villanos, numVillano);
                         if (combate.comprobarOpcionPersonajes(villanos, numVillano)) {
                             System.out.println("Tu villano sera " + villanoEscogido.getNombre());
+                            System.out.println("-------------------------------");
                             System.out.println("¿Que objeto escogeras para tu superheroe?");
+                            System.out.println("-------------------------------");
                             combate.imprimirArrayObjetos(objetos);
                             int numObjeto = scanner.nextInt();
                             if (combate.comprobarOpcionObjetos(objetos, numObjeto)) {
